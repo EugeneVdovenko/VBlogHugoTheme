@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="{{ .Language }}">
+<head itemscope itemtype="{{ .Site.BaseURL }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- , user-scalable=no, maximum-scale=1.0, minimum-scale=1.0 -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--    -->
+    {{- partial "head/_title.html" . -}}
+    <!--    -->
+    {{- partial "head/_description.html" . -}}
+    <!--    -->
+    {{- partial "head/_link.html" . -}}
+    <!--    -->
+    {{- partial "head/_language.html" . -}}
+    <!--    -->
+    {{- partial "head/_image.html" . -}}
+    <!--    -->
+    {{- partial "head/_date.html" . -}}
+    <!--    -->
+    {{- partial "head/_feed.html" . -}}
+    <!--    -->
+    {{- partial "head/_article.html" . -}}
+    <!--    -->
+    {{- partial "head/_icons.html" . -}}
+    <!--    -->
+    {{- partial "head/_sec.html" . -}}
+    <!--    -->
+    {{- partial "head/_twitter.html" . -}}
+    {{- partial "head/_facebook.html" . -}}
+    <!--    -->
+    {{- partial "head/_meta.html" . -}}
+    <!--    -->
+    {{ hugo.Generator }}
+    <!--    -->
+    <link rel="stylesheet" href="/css/socicon.css">
+    {{ $options := (dict "targetPath" "css/style.css" "outputStyle" "compressed" "enableSourceMap" true) }}
+    {{ $style := resources.Get "sass/main.scss" | resources.ExecuteAsTemplate "main.scss" . | resources.ToCSS $options | resources.Minify | resources.Fingerprint }}
+    <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
+</head>
+<body>
+{{- block "main" . -}}{{- end -}}
+</body>
+</html>

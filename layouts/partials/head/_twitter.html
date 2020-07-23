@@ -1,0 +1,9 @@
+{{ $author := .Params.author | default .Site.Author.email }}
+{{ $author := index .Site.Data.authors $author }}
+{{ with $author.twitter.username }}
+{{ $twitter_at := printf "@%s" . }}
+{{ $twitter_card := "summary_large_image" }}
+<meta property="twitter:card" content="{{ $twitter_card }}">
+<meta property="twitter:site" content="{{ $twitter_at }}">
+<meta property="twitter:creator" content="{{ $twitter_at }}">
+{{ end }}

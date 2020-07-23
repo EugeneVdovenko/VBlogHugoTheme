@@ -1,0 +1,24 @@
+{{ define "main" }}
+<header>
+    <div class="title">
+        <a href="{{ .Site.BaseURL }}" class="logo-link"><img src="{{ .Site.Params.logo | relURL }}" alt="Travel by Vdovenko.NET" width="50" height="50" class="logo"></a>
+        <h1><a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a></h1>
+        <nav>
+            {{ $currentPage := . }}
+            {{ range .Site.Menus.main }}
+            <a href="{{ .URL | relLangURL }}" class="nav-item{{ if eq $.Page.RelPermalink (.URL | relLangURL) }} active{{ end }}">{{ .Pre }} {{ .Name }}</a>
+            {{ end }}
+        </nav>
+    </div>
+</header>
+<main>
+    <section class="article-content">
+        <article>
+            {{ .Content }}
+        </article>
+    </section>
+</main>
+<footer>
+    <p class="copyright">&copy; Путешествия {{ now.Year }}</p>
+</footer>
+{{ end }}

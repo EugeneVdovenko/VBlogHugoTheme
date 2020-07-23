@@ -1,0 +1,13 @@
+{{ $desc := "" }}
+{{ if .Params.summary }}
+    {{ $desc = .Params.summary }}
+{{ else if .IsPage }}
+    {{ $desc = .Summary }}
+{{ else }}
+    {{ $desc = .Site.Params.description }}
+{{ end }}
+
+<meta name="description" content="{{ $desc }}" />
+<meta itemprop="description" content="{{ $desc }}" />
+<meta property="og:description" content="{{ $desc }}" />
+<meta name="twitter:description" content="{{ $desc }}" />

@@ -1,0 +1,12 @@
+{{ with .Params.image }}
+  {{ $image := (printf "/img/content/%d/%s" (time $.Date).Year . | absURL) }}
+  <meta itemprop="image" content="{{ $image }}" />
+  <meta property="og:image" content="{{ $image }}" />
+  <meta name="twitter:image" content="{{ $image }}" />
+  <meta name="twitter:image:src" content="{{ $image }}" />
+{{ else }}
+  <meta itemprop="image" content="{{ .Site.Params.logo | absURL }}" />
+  <meta property="og:image" content="{{ .Site.Params.logo | absURL }}" />
+  <meta name="twitter:image" content="{{ .Site.Params.logo | absURL }}" />
+  <meta name="twitter:image:src" content="{{ .Site.Params.logo | absURL }}" />
+{{ end }}

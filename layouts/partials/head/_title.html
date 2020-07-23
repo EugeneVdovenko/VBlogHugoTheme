@@ -1,0 +1,13 @@
+{{ $title := .Site.Title }}
+{{ if ne .RelPermalink ("/" | relLangURL) }}
+    {{ $title = printf "%s &middot; %s" .Title $title | safeHTML }}
+{{ else }}
+    {{ $title = printf "%s &middot; %s" .Site.Params.subtitle $title | safeHTML }}
+{{ end }}
+
+<title itemprop="name">{{ $title }}</title>
+<meta property="og:title" content="{{ $title }}" />
+<meta name="twitter:title" content="{{ $title }}" />
+<meta itemprop="name" content="{{ $title }}" />
+<meta name="application-name" content="{{ $title }}" />
+<meta property="og:site_name" content="{{ .Site.Title }}" />

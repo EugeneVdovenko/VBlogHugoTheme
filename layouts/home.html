@@ -1,0 +1,73 @@
+{{ define "main" }}
+<header>
+    <div class="title">
+        <a href="{{ .Site.BaseURL }}" class="logo-link"><img src="{{ .Site.Params.logo | relURL }}" alt="Travel by Vdovenko.NET" width="50" height="50" class="logo"></a>
+        <h1><a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a></h1>
+        <nav>
+            {{ $currentPage := . }}
+            {{ range .Site.Menus.main }}
+            <a href="{{ .URL }}" class="nav-item{{ if $currentPage.IsMenuCurrent "main" . }} active{{ end }}">{{ .Pre }} {{ .Name }}</a>
+            {{ end }}
+        </nav>
+    </div>
+
+    {{ $posts := first 5 .Site.Taxonomies.categories.pinned }}
+    {{ if gt (len $posts) 1 }}
+    <div class="slider">
+        <div class="news">
+            {{ range $idx, $post := $posts }}
+            <input type="radio" name="slide-active" id="slide-{{ $idx }}" {{ if eq $idx 0 }}checked="checked"{{ end }}>
+            <figure>
+                {{ with .Params.image }}<img src="{{ . }}" alt="{{ $post.Title }}">{{ end }}
+                <figcaption><a href="{{ .Permalink }}">{{ .Title }}</a></figcaption>
+            </figure>
+            {{ end }}
+        </div>
+
+        <div class="controls">
+            {{ range $idx, $post := $posts }}
+            <label for="slide-{{ $idx }}" style="background-image: url({{ .Params.image }});">{{ .Title }}</label>
+            {{ end }}
+        </div>
+    </div>
+    {{ end }}
+</header>
+<main>
+    {{ $tops := .Site.Data.top }}
+    {{ if gt (len $tops) 0 }}
+    <section class="top-list">
+        {{ range $tops }}
+        <article>
+            <h2>{{ .title }}</h2>
+            {{ range $idx, $item := .top}}
+            <p>{{ $idx }}. <a href="{{ $item.url }}" target="_blank" rel="nofollow">{{ $item.title }}</a></p>
+            {{ end }}
+        </article>
+        {{ end }}
+    </section>
+    {{ end }}
+
+    {{/* $posts := where .Pages "Type" "posts" */}}
+    {{ $posts := where .Site.RegularPages "Section" "post" }}
+    {{ if gt (len $posts) 0 }}
+    {{ $paginator := .Paginate $posts }}
+    <section class="article-list">
+        {{ range $post := $paginator.Pages }}
+        <article class="post-card">
+            <h2 class="post-title"><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+            {{ with .Params.image }}<img src="{{ . }}" alt="{{ $post.Title }}">{{ end }}
+            <p class="post-summary">{{ .Summary | plainify | emojify }}</p>
+            <div class="card-footer">
+                <span class="post-date">{{ (time .Date).Format "02.01.2006" }}</span>
+                <a href="{{ .Permalink }}" class="post-more">Читать</a>
+            </div>
+        </article>
+        {{ end }}
+        {{ template "_internal/pagination.html" . }}
+    </section>
+    {{ end }}
+</main>
+<footer>
+    <p class="copyright">&copy; Путешествия {{ now.Year }}</p>
+</footer>
+{{ end }}
