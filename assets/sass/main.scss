@@ -141,7 +141,7 @@ header {
         padding: .5em;
         background-repeat: no-repeat;
         background-size: cover;
-        background-position: center center;
+        background-position: right center;
         border-bottom: 1px solid $colorTheme;
       }
 
@@ -280,8 +280,93 @@ main {
   }
 
   .article-content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+
     article {
       padding: 1em;
+      text-align: justify;
+      max-width: 1000px;
+
+      @media (min-width: 1000px) {
+        &.page {
+          width: 1000px;
+        }
+      }
+
+      h3 {
+        clear: both;
+
+        a {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+
+          .logo {
+            height: 2em;
+          }
+
+        }
+      }
+
+      p {
+        a {
+          border-bottom: 1px dotted $colorTheme;
+        }
+      }
+
+      li {
+        a {
+          border-bottom: 1px dotted $colorTheme;
+        }
+      }
+
+      table {
+        tbody {
+          tr {
+            &:nth-child(odd) {
+              background-color: $colorThemeTransparent;
+            }
+
+            td {
+              padding: 0 .5em;
+
+              &:nth-child(1) {
+                text-align: right;
+              }
+
+              .avia-office-address {
+                display: block;
+                font-size: small;
+              }
+            }
+
+          }
+        }
+      }
+
+      .img-content {
+        &.img-inner {
+          width: 150px;
+          margin: 1em;
+        }
+
+        &.img-left {
+          float: left;
+          margin-left: 0;
+        }
+
+        &.img-right {
+          float: right;
+          margin-right: 0;
+        }
+      }
+    }
+
+    .aside-left {
+
     }
   }
 

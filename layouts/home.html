@@ -18,7 +18,7 @@
             {{ range $idx, $post := $posts }}
             <input type="radio" name="slide-active" id="slide-{{ $idx }}" {{ if eq $idx 0 }}checked="checked"{{ end }}>
             <figure>
-                {{ with .Params.image }}<img src="{{ . }}" alt="{{ $post.Title }}">{{ end }}
+                {{ with .Params.image }}<img src="{{ printf "/img/content/walls/%s" . | absURL }}" alt="{{ $post.Title }}">{{ end }}
                 <figcaption><a href="{{ .Permalink }}">{{ .Title }}</a></figcaption>
             </figure>
             {{ end }}
@@ -26,7 +26,7 @@
 
         <div class="controls">
             {{ range $idx, $post := $posts }}
-            <label for="slide-{{ $idx }}" style="background-image: url({{ .Params.image }});">{{ .Title }}</label>
+            <label for="slide-{{ $idx }}" style="background-image: url({{ printf "/img/content/walls/%s" .Params.image | absURL }});">{{ .Title }}</label>
             {{ end }}
         </div>
     </div>
@@ -55,7 +55,7 @@
         {{ range $post := $paginator.Pages }}
         <article class="post-card">
             <h2 class="post-title"><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-            {{ with .Params.image }}<img src="{{ . }}" alt="{{ $post.Title }}">{{ end }}
+            {{ with .Params.image }}<img src="{{ printf "/img/content/walls/%s" . | absURL }}" alt="{{ $post.Title }}">{{ end }}
             <p class="post-summary">{{ .Summary | plainify | emojify }}</p>
             <div class="card-footer">
                 <span class="post-date">{{ (time .Date).Format "02.01.2006" }}</span>
