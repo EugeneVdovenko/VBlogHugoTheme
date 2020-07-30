@@ -63,7 +63,19 @@ theme = "VBlog"
   description = "Long description site"
   favicon = "favicon.ico"
   logo = "img/logo.png"
+  sliderCount = 4
+  shortlink = "https://shortlink.microservice/"
 ```
+
+- _sliderCount_ - количество слайдов в слайдере на главной странице
+  Опытным путем выяснил, что 4 слайда оптимально для соотношения сторон 
+  слайдов 2:1.
+- _shortlink_ - сервис сгращения ссылок. Используется в коротких кодах
+  ```
+  {{< shortlink c0dE >}}
+  ```
+  В версии Hugo 0.73.x коды  не работают в html-файлах, применять только в 
+  markdown.
 
 Создаем меню:
 
