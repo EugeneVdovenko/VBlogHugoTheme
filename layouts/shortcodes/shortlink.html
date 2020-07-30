@@ -1,1 +1,2 @@
-{{ with .Get 0 }}{{ printf "%s/%s" (strings.TrimRight "/" $.Page.Site.Params.shortlink) . }}{{ end }}
+{{ $service := $.Page.Site.Params.shortlink | default "https://shortlink.microservice.su/" }}
+{{ with .Get 0 }}{{ printf "%s/%s" (strings.TrimRight "/" $service) . }}{{ end }}

@@ -108,7 +108,7 @@ header {
           left: 1em;
           top: 1em;
           text-transform: uppercase;
-          background-color: $colorThemeTransparent;
+          background-color: $colorThemeHalfTransparent;
           padding: 1em;
 
           a {
@@ -141,7 +141,7 @@ header {
         padding: .5em;
         background-repeat: no-repeat;
         background-size: cover;
-        background-position: right center;
+        background-position: right bottom;
         border-bottom: 1px solid $colorTheme;
       }
 

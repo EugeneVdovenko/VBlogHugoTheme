@@ -11,7 +11,8 @@
         </nav>
     </div>
 
-    {{ $posts := first 5 .Site.Taxonomies.categories.pinned }}
+    {{ $sliderCount := .Site.Params.sliderCount | default 4 }}
+    {{ $posts := first $sliderCount .Site.Taxonomies.categories.pinned }}
     {{ if gt (len $posts) 1 }}
     <div class="slider">
         <div class="news">
@@ -26,7 +27,7 @@
 
         <div class="controls">
             {{ range $idx, $post := $posts }}
-            <label for="slide-{{ $idx }}" style="background-image: url({{ printf "/img/content/walls/%s" .Params.image | absURL }});">{{ .Title }}</label>
+            <label for="slide-{{ $idx }}" style="background-image: url({{ printf "/img/content/walls/%s" .Params.image | absURL }});"></label>
             {{ end }}
         </div>
     </div>
