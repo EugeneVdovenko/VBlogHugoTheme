@@ -1,8 +1,8 @@
 $colorText: black;
 $colorBg: whitesmoke;
-$colorTheme: rgba(50, 150, 250, 1);
-$colorThemeHalfTransparent: rgba(50, 150, 250, .8);
-$colorThemeTransparent: rgba(50, 150, 250, .2);
+$colorTheme: {{ .Site.Params.colorTheme | default "rgba(50, 150, 250, 1)" }};
+$colorThemeHalfTransparent: {{ .Site.Params.colorThemeHalfTransparent | default "rgba(50, 150, 250, .8)" }};
+$colorThemeTransparent: {{ .Site.Params.colorThemeTransparent | default "rgba(50, 150, 250, .2)" }};
 
 body {
   box-sizing: border-box;
