@@ -36,7 +36,8 @@
     {{ end }}
 </header>
 <main>
-    {{ $tops := .Site.Data.top }}
+    {{ with .Site.Data.top }}
+    {{ $tops := . }}
     {{ if gt (len $tops) 0 }}
     <section class="top-list">
         {{ range $tops }}
@@ -48,6 +49,7 @@
         </article>
         {{ end }}
     </section>
+    {{ end }}
     {{ end }}
 
     {{/* $posts := where .Pages "Type" "posts" */}}
